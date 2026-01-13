@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexanova | Trainer Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Top Banner -->
+<header>
+  <div class="banner">
+    <h1>🏫 Nexanova Institute</h1>
+    <p>Trainer Management System</p>
+  </div>
+</header>
+
+<!-- Main Container -->
+<div class="main-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li onclick="showSection('dashboard', this)">Dashboard</li>
+      <li onclick="showSection('newTrainer', this)">New Trainer</li>
+      <li onclick="showSection('newSubject', this)">New Subject</li>
+      <li onclick="showSection('searchTrainer', this)">Search Trainer</li>
+    </ul>
+  </aside>
+
+  <!-- Content Area -->
+  <section class="content">
+
+    <!-- Dashboard Section -->
+    <div class="section" id="dashboard">
+      <h2>All Trainers & Subjects</h2>
+      <div class="cards">
+        <!-- All Trainers Card -->
+        <div class="card dashboard-card">
+          <h3>All Trainers</h3>
+          <button onclick="loadTrainers()">Load Trainers</button>
+          <div class="list-container">
+            <ul id="trainerList"></ul>
+          </div>
+        </div>
+        <!-- Subject → Trainer Count Card -->
+        <div class="card dashboard-card">
+          <h3>Subject → Trainer Count</h3>
+          <button onclick="loadDashboard()">Load Dashboard</button>
+          <div class="list-container">
+            <ul id="dashboardList"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New Trainer Section -->
+    <div class="section" id="newTrainer">
+      <h2>Add Trainer</h2>
+      <div class="card">
+        <input id="tname" placeholder="Trainer Name">
+        <input id="tsubject" placeholder="Subject">
+        <select id="availability">
+          <option value="Available">Available</option>
+          <option value="Busy">Busy</option>
+          <option value="On Leave">On Leave</option>
+        </select>
+        <button onclick="addTrainer()">Add Trainer</button>
+      </div>
+    </div>
+
+    <!-- New Subject Section -->
+    <div class="section" id="newSubject">
+  <h2>Add Subject</h2>
+  <div class="card">
+    <input id="sname" placeholder="Subject Name">
+    <button onclick="addSubject()">Add Subject</button>
+  </div>
+
+  <!-- Subject list with delete buttons -->
+  <div class="card">
+    <h3>Subjects List</h3>
+    <ul id="subjectList"></ul>
+  </div>
+</div>
+
+
+    <!-- Search Trainer Section -->
+    <div class="section" id="searchTrainer">
+      <h2>Search Trainer</h2>
+      <div class="cards">
+        <!-- Search by ID Card -->
+        <div class="card dashboard-card">
+          <h3>Search by ID</h3>
+          <input id="findId" placeholder="Trainer ID">
+          <button onclick="findById()">Search</button>
+          <div class="list-container">
+            <ul id="idResult"></ul>
+          </div>
+        </div>
+        <!-- Search by Subject Card -->
+        <div class="card dashboard-card">
+          <h3>Search by Subject</h3>
+          <input id="findSubject" placeholder="Subject">
+          <button onclick="findBySubject()">Search</button>
+          <div class="list-container">
+            <ul id="subjectResult"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  © 2026 Nexanova Institute
+</footer>
+
+<script src="script.js"></script>
+<script>
+  // Show section and highlight sidebar
+  function showSection(sectionId, element) {
+    document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+    document.getElementById(sectionId).style.display = 'block';
+
+    document.querySelectorAll('.sidebar ul li').forEach(li => li.classList.remove('active'));
+    if(element) element.classList.add('active');
+  }
+
+  // Show dashboard by default
+  showSection('dashboard', document.querySelector('.sidebar ul li'));
+</script>
+
+</body>
+</html>
